@@ -2,12 +2,11 @@
 define([
   'jquery'
 , 'ramda'
-, 'pointfree'
 , 'Maybe'
 , 'player'
 , 'youtube'
 , 'bacon'
-], function($, _, P, Maybe, Player, youtube, bacon) {
+], function($, _, Maybe, Player, youtube, bacon) {
   'use strict';
 
   // some "move out over here" helpers

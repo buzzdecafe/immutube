@@ -16,11 +16,9 @@ require.config({ baseUrl: './scripts'
                 });
 require([
   'jquery',
-  'app',
-  'io'
-], function($, app, io){
+  'app'
+], function($, app){
   'use strict';
 
-  io.extendFn(); // globally alters Function's prototype
   $(app);
 });

@@ -7,8 +7,7 @@
     "requirejs": "latest",
     "jquery": "2.1.0",
     "lodash": "~2.4",
-    "bacon": "latest",
-    "pointfree": "DrBoolean/pointfree-fantasy"
+    "bacon": "latest"
   },
   "ignore": [
     "**/.*",

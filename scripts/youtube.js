@@ -2,17 +2,15 @@
 define([
   'jquery'
 , 'ramda'
-, 'io'
 , 'http'
-, 'pointfree'
-], function($, _, io, http, P) {
+], function($, _, http) {
   'use strict';
 
-  var pluck = _.curry(function(x,obj) { return obj[x]; })
-    , split = _.curry(function(x,s) { return s.split(x); })
+  var prop = _.prop
+    , split = _.split
     , last = function(s) { return s[s.length - 1]; }
-    , compose = P.compose
-    , fmap = P.fmap;
+    , compose = _.compose
+    , fmap = _.map;
 
   // type Term = {q: String}
   // type Selector = String
@@ -24,13 +22,13 @@ define([
   var search = compose(http.getJSON, searchUrl)
 
   //+ getTitle :: {title: {$t: String}} -> String
-  var getTitle = compose(pluck('$t'), pluck('title'));
-  var getId    = compose(last, split('/'), pluck('$t'), pluck('id'));
+  var getTitle = compose(prop('$t'), prop('title'));
+  var getId    = compose(last, split('/'), prop('$t'), prop('id'));
 
   var toLi = function(t) { return $('<li/>', {text: getTitle(t), 'data-youtubeid': getId(t)}); };
 
   //+ render :: JSON -> HTML
-  var render = compose(fmap(toLi), pluck('entry'), pluck('feed'));
+  var render = compose(fmap(toLi), prop('entry'), prop('feed'));
 
   //+ displayResults :: Selector -> Term -> Future HTML
   var displayResults = compose(fmap(render), search);
