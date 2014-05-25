@@ -20,14 +20,14 @@ define([
   // setup youtube search li stream
   var toParam = function (x) { return {q: x.target.value}; };
   var getResults = compose(youtube, toParam)
-  var youTubeStream = Bacon.fromEventTarget($("#search"), "keydown").debounce(300).map(getResults);
+  var youTubeStream = map(getResults, Bacon.fromEventTarget($("#search"), "keydown").debounce(300)) //.map(getResults);
 
   // setup click to player stream
   var toYoutubeId = function(e){ 
     return $(e.target).data('youtubeid'); 
   };
   var makePlayer = compose(map(Player.create), Maybe, toYoutubeId)
-  var playerStream = Bacon.fromEventTarget(document, "click").map(makePlayer);
+  var playerStream = map(makePlayer, Bacon.fromEventTarget(document, "click")); //.map(makePlayer);
 
   // run app
   youTubeStream.onValue(fork(setHtml('#results')));
