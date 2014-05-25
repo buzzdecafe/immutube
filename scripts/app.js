@@ -23,7 +23,9 @@ define([
   var youTubeStream = Bacon.fromEventTarget($("#search"), "keydown").debounce(300).map(getResults);
 
   // setup click to player stream
-  var toYoutubeId = function(e){ return $(e.target).data('youtubeid'); }
+  var toYoutubeId = function(e){ 
+    return $(e.target).data('youtubeid'); 
+  };
   var makePlayer = compose(map(Player.create), Maybe, toYoutubeId)
   var playerStream = Bacon.fromEventTarget(document, "click").map(makePlayer);
 
