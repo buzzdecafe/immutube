@@ -1,6 +1,6 @@
 /* global document */
 
-require.config({ baseUrl: '/scripts'
+require.config({ baseUrl: './scripts'
                , paths : { 'jquery': 'vendor/jquery/dist/jquery.min'
                          , 'ramda': 'ramda'
                          , 'pointfree': 'vendor/pointfree/dist/pointfree.amd'
